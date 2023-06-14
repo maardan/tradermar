@@ -3,5 +3,6 @@ assets/
 db/
 mock/
 node_modules/
-/src/trader/decider.js
+/src/controller/trader/bias.js
+/src/controller/trader/decider.js
 /src/utils/constants.js
