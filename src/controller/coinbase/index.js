@@ -1,4 +1,6 @@
 import { getQuote, getAccount, getAccounts, createOrder, sellOrder } from './services.js';
+import { coinbaseCashAcctId, coinbaseBtcAcctId } from '../../utils/constants.js';
+import * as theBias from '../trader/bias.js';
 
 const sendOrder = (type, symbol, amount, timeNow) => {
     if (type === 'buy') {
@@ -26,7 +28,7 @@ const sendOrder = (type, symbol, amount, timeNow) => {
             console.log({ btcBalance });
 
             if (btcAccount && btcBalance) {
-                const sellAmount = amount === 'ALL' ? parseFloat(btcBalance).toFixed(4) : amount;
+                const sellAmount = amount === 'ALL' ? parseFloat(btcBalance).toFixed(3) : amount;
 
                 return sellOrder(sellAmount).then((createdOrder) => {
                     if (createdOrder) {

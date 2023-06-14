@@ -8,7 +8,6 @@ import * as coinbase from './controller/coinbase/index.js';
 import * as td from './controller/td/services.js';
 import * as theBias from './controller/trader/bias.js';
 import * as utils from './utils/generic.js';
-import { coinbaseCashAcctId, coinbaseBtcAcctId } from './utils/constants.js';
 
 const app = express();
 const PORT = process.env.PORT || 9000;

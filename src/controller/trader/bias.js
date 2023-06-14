@@ -22,9 +22,9 @@ const bias = {
         },
         oneMin: {
           indicatorB: {
-            lastUpdateTime: 'Tue Jun 13 2023 23:43:04 GMT-0700 (Pacific Daylight Time)',
-            price: 25892,
-            lastPrice: 25908,
+            lastUpdateTime: 'Wed Jun 14 2023 00:24:03 GMT-0700 (Pacific Daylight Time)',
+            price: 25888,
+            lastPrice: 25885,
             value: false
           }
         }
