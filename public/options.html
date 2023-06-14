@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Volumes</title>
+        <style type="text/css">
+            html,
+            body {
+                height: 100%;
+                width: 100%;
+            }
+            body {
+                font-family: sans-serif, monospace;
+                min-width: 321px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 0;
+                padding: 0;
+            }
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td,
+            th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            .option:nth-child(even) {
+                background-color: #dddddd;
+            }
+
+            .option {
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 1.5;
+                padding: 10px;
+            }
+
+            #root {
+                width: 100%;
+            }
+
+            #volumesTableHotList {
+                margin-top: 50px;
+            }
+
+            #uiContainer {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+        <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script type="text/babel" src="ui.js" defer></script>
+    </body>
+</html>

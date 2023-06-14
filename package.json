@@ -1,0 +1,44 @@
+{
+    "name": "mardan-website",
+    "version": "1.0.3",
+    "description": "Mardan Website",
+    "engines": {
+        "node": "18.16.0"
+    },
+    "main": "",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/maardan/website"
+    },
+    "type": "module",
+    "author": "Mardan Anwar",
+    "license": "MIT",
+    "keywords": [
+        "website",
+        "node",
+        "heroku",
+        "express"
+    ],
+    "scripts": {
+        "lint": "eslint src/**/*.js",
+        "format": "eslint src/**/*.js --fix",
+        "pretty": "prettier --write \"src/**/*.js\""
+    },
+    "dependencies": {
+        "axios": "^1.4.0",
+        "coinbase": "^2.0.8",
+        "crypto": "^1.0.1",
+        "crypto-js": "^4.1.1",
+        "express": "^4.18.2",
+        "mongodb": "^5.5.0",
+        "node-fetch": "2.6.1",
+        "request": "^2.88.2"
+    },
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^5.59.8",
+        "@typescript-eslint/parser": "^5.59.8",
+        "eslint": "^8.41.0",
+        "prettier": "^2.8.8",
+        "typescript": "^5.0.4"
+    }
+}

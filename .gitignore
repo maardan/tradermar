@@ -1,0 +1,7 @@
+.DS_Store
+assets/
+db/
+mock/
+node_modules/
+/src/trader/decider.js
+/src/utils/constants.js
