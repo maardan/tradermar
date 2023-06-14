@@ -1,33 +1,33 @@
 const bias = {
     BTC: {
-        myCashBalance: 300,
+        myCashBalance: 0,
         profit: 0,
-        havePosition: false,
+        havePosition: true,
         lastTransactionTime: 'Sat Jun 10 2023 13:42:03 GMT-0700 (Pacific Daylight Time)',
         fiveMin: {
-            indicatorA: {
-                lastUpdateTime: 'Sat Jun 10 2023 12:45:02 GMT-0700 (Pacific Daylight Time)',
-                price: 25681,
-                lastPrice: 25555,
-                value: true,
-            },
+          indicatorA: {
+            lastUpdateTime: 'Sat Jun 10 2023 12:45:02 GMT-0700 (Pacific Daylight Time)',
+            price: 25681,
+            lastPrice: 25555,
+            value: true
+          }
         },
         threeMin: {
-            indicatorB: {
-                lastUpdateTime: 'Sat Jun 10 2023 13:42:03 GMT-0700 (Pacific Daylight Time)',
-                price: 25824,
-                lastPrice: 25840,
-                value: false,
-            },
+          indicatorB: {
+            lastUpdateTime: 'Sat Jun 10 2023 13:42:03 GMT-0700 (Pacific Daylight Time)',
+            price: 25824,
+            lastPrice: 25840,
+            value: false
+          }
         },
         oneMin: {
-            indicatorB: {
-                lastUpdateTime: 'Sat Jun 10 2023 13:48:03 GMT-0700 (Pacific Daylight Time)',
-                price: 25818,
-                lastPrice: 25813,
-                value: true,
-            },
-        },
+          indicatorB: {
+            lastUpdateTime: 'Tue Jun 13 2023 23:43:04 GMT-0700 (Pacific Daylight Time)',
+            price: 25892,
+            lastPrice: 25908,
+            value: false
+          }
+        }
     },
     TSLA: {
         myCashBalance: 0,
