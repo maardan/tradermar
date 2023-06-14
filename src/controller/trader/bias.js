@@ -6,10 +6,10 @@ const bias = {
         lastTransactionTime: 'Sat Jun 10 2023 13:42:03 GMT-0700 (Pacific Daylight Time)',
         fiveMin: {
           indicatorA: {
-            lastUpdateTime: 'Sat Jun 10 2023 12:45:02 GMT-0700 (Pacific Daylight Time)',
-            price: 25681,
-            lastPrice: 25555,
-            value: true
+            lastUpdateTime: 'Wed Jun 14 2023 00:35:03 GMT-0700 (Pacific Daylight Time)',
+            price: 25875,
+            lastPrice: 25681,
+            value: false
           }
         },
         threeMin: {

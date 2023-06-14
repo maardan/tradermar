@@ -28,7 +28,7 @@ const sendOrder = (type, symbol, amount, timeNow) => {
             console.log({ btcBalance });
 
             if (btcAccount && btcBalance) {
-                const sellAmount = amount === 'ALL' ? parseFloat(btcBalance).toFixed(3) : amount;
+                const sellAmount = amount === 'ALL' ? (parseFloat(btcBalance)-0.0001).toFixed(4) : amount;
 
                 return sellOrder(sellAmount).then((createdOrder) => {
                     if (createdOrder) {
