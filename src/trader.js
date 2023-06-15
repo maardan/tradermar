@@ -3,7 +3,7 @@ import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import express from 'express';
 import { isUpward, hasUpwardTrend, hasDownwardTrend, decideShort } from './controller/trader/decider.js';
-import { generateOrder, getCallPutSuggestions, negotiate } from './controller/td/index.js';
+import { getCallPutSuggestions, negotiate } from './controller/td/index.js';
 import * as coinbase from './controller/coinbase/index.js';
 import * as td from './controller/td/services.js';
 import * as theBias from './controller/trader/bias.js';
@@ -14,8 +14,52 @@ const PORT = process.env.PORT || 9000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// app.post('/trade/:symbol/:alert/:bias/:timeFrame', async (req, res) => {
+//     const symbol = req?.params?.symbol.toUpperCase();
+//     const alertType = req?.params?.alert;
+//     const newDirection = req?.params?.bias;
+//     const timeFrame = req?.params?.timeFrame;
 
+//     const currPrice = await coinbase.getQuote('BTC-USD');
+//     const oldBias = theBias.get(symbol);
+//     let lastUpdateTime = new Date();
+//     lastUpdateTime = lastUpdateTime.toString();
+//     console.log('************************************************************************************************************************');
+//     console.log(`\n\n\n*** ${lastUpdateTime} ${symbol} ${alertType} ${timeFrame} ${newDirection} at $${currPrice} ***\n`);
 
+//     if (currPrice) {
+//         const newBias = theBias.updateAlert(symbol, timeFrame, alertType, {
+//             lastUpdateTime,
+//             price: currPrice,
+//             lastPrice: oldBias[timeFrame][alertType].price,
+//             value: newDirection === 'buy',
+//         });
+
+//         const isBaseUp = isUpward(newBias, 'indicatorA', 'fiveMin');
+//         const isChildTrendUp = hasUpwardTrend(newBias, 'indicatorB', 'threeMin', 'oneMin');
+//         const isChildTrendDown = hasDownwardTrend(newBias, 'indicatorB', 'threeMin', 'oneMin');
+
+//         console.log({ symbol, currPrice, isBaseUp, isChildTrendUp, isChildTrendDown }, newBias);
+
+//         if (isBaseUp) {
+//             if (isChildTrendUp && !newBias.havePosition) {
+//                 // BUY crypto, if none present
+//                 return coinbase.sendOrder('buy', symbol, 300, lastUpdateTime);
+//             } else if (isChildTrendDown && newBias.havePosition) {
+//                 // Sell crypto, if present // const sellAmount = parseFloat(btcBalance) - 1;
+//                 return coinbase.sendOrder('sell', symbol, 'ALL', lastUpdateTime);
+//             }
+//         } else {
+//             if (newBias.havePosition) {
+//                 // Sell crypto, if present
+//                 return coinbase.sendOrder('sell', symbol, 'ALL', lastUpdateTime);
+//             }
+//         }
+//     } else {
+//         console.log('********** BTC CURRENT PRICE DATA UNAVAILABLE **********');
+//         return res.json(false);
+//     }
+// });
 app.post('/trade/:symbol/:alert/:bias/:timeFrame', async (req, res) => {
     const symbol = req?.params?.symbol.toUpperCase();
     const alertType = req?.params?.alert;
@@ -46,10 +90,14 @@ app.post('/trade/:symbol/:alert/:bias/:timeFrame', async (req, res) => {
         if (isBaseUp) {
             if (isChildTrendUp && !newBias.havePosition) {
                 // BUY crypto, if none present
-                return coinbase.sendOrder('buy', symbol, 300, lastUpdateTime);
+                theBias.update(symbol, 'havePosition', true);
+                theBias.update(symbol, 'myCashBalance', currPrice);
+                theBias.update(symbol, 'lastTransactionTime', timeNow);
             } else if (isChildTrendDown && newBias.havePosition) {
-                // Sell crypto, if present // const sellAmount = parseFloat(btcBalance) - 1;
-                return coinbase.sendOrder('sell', symbol, 'ALL', lastUpdateTime);
+                theBias.update(symbol, 'havePosition', true);
+                theBias.update(symbol, 'myCashBalance', 0);
+                theBias.update(symbol, 'profit', currPrice - newBias.myCashBalance);
+                theBias.update(symbol, 'lastTransactionTime', timeNow);
             }
         } else {
             if (newBias.havePosition) {
@@ -62,6 +110,7 @@ app.post('/trade/:symbol/:alert/:bias/:timeFrame', async (req, res) => {
         return res.json(false);
     }
 });
+
 
 app.post('/optionsTrade/:symbol/:alert/:bias/:timeFrame', async (req, res) => {
     const symbol = req?.params?.symbol.toUpperCase();
@@ -210,9 +259,11 @@ app.get('/get_tasty_options/:symbol', async (req, res) => {
     const login = await td.loginTd();
 
     if (login) {
-        const symbol = req.params.symbol;
+        const symbol = req.params.symbol.toUpperCase();
         const bias = theBias.get(symbol);
         const optionsChain = await td.getOptionChainData(symbol);
+
+        console.log(optionsChain)
 
         if (optionsChain) {
             const optionsChainSuggestions = getCallPutSuggestions(optionsChain);

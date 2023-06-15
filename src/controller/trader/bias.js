@@ -60,6 +60,37 @@ const bias = {
             },
         },
     },
+    LOGI: {
+        myCashBalance: 0,
+        profit: 0,
+        longCallSymbol: '',
+        longPutSymbol: '',
+        lastTransactionTime: '',
+        fiveMin: {
+            indicatorA: {
+                lastUpdateTime: '2023-06-09T19:55:00.426Z',
+                price: '245.00',
+                lastPrice: '244.99',
+                value: true,
+            },
+        },
+        threeMin: {
+            indicatorA: {
+                lastUpdateTime: '2023-06-09T19:09:00.713Z',
+                price: '243.87',
+                lastPrice: '244.74',
+                value: false,
+            },
+        },
+        oneMin: {
+            indicatorA: {
+                lastUpdateTime: '2023-06-09T20:01:04.430Z',
+                price: '244.78',
+                lastPrice: '244.44',
+                value: true,
+            },
+        },
+    },
 };
 
 const updateAlert = (symbol, timeFrame, alertType, alertData) => {

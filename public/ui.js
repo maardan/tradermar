@@ -68,11 +68,11 @@ class suggestor extends React.Component {
                 <div>totalVolume: {option.totalVolume}</div>
                 <div>markWingDiff: {option.markWingDiff}</div>
                 <div>wing: {option.wing}</div>
-                {currBias.longCallSymbol === option.symbol || currBias.longPutSymbol === option.symbol ? (
+                {/* {currBias.longCallSymbol === option.symbol || currBias.longPutSymbol === option.symbol ? (
                     <code>My Position</code>
                 ) : (
                     <button onClick={() => this.handleBuy(option.symbol, option.bid, option.ask)}>BUY</button>
-                )}
+                )} */}
             </div>
         ));
     }
